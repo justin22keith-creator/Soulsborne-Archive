@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10100f">
+<meta name="description" content="A seven-game Soulsborne encyclopedia and completionist tracker for PS5-playable editions.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<title>Soulsborne Master Encyclopedia</title>
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div class="brand"><div class="sigil">✦</div><div><div class="eyebrow">THE COMPLETE COMPENDIUM</div><div class="brand-title">SOULSBORNE <span>ARCHIVE</span></div></div></div>
+  <button class="icon-btn" id="installBtn" hidden aria-label="Install app">⇩</button>
+</header>
+<main>
+<section class="hero">
+  <div class="eyebrow">PS5-PLAYABLE EDITIONS · SEVEN WORLDS</div>
+  <h1>Master the<br><em>forgotten realms.</em></h1>
+  <p>A completionist archive for every world, encounter, quest and collectible. Track your journey across all seven games.</p>
+  <div class="hero-line"></div>
+</section>
+
+<section class="game-select">
+  <div class="section-heading"><div><div class="eyebrow">CHOOSE YOUR WORLD</div><h2>Game archive</h2></div><span class="micro" id="gameCount">07 WORLDS</span></div>
+  <div id="gameGrid" class="game-grid"></div><div id="overallSummary" class="overall-summary"></div>
+</section>
+
+<section class="dashboard">
+  <div class="section-heading"><div><div class="eyebrow">CURRENT JOURNEY</div><h2 id="selectedTitle">Demon's Souls</h2><div class="subtle" id="selectedEdition"></div></div><span class="status-pill">LOCAL SAVE</span></div>
+  <div class="platform-note" id="platformNote"></div>
+  <div class="progress-grid">
+    <article class="progress-card"><div class="eyebrow">TROPHY TRACKER</div><div class="progress-value" id="trophyPct">—</div><div class="progress-track"><i id="trophyBar"></i></div><small id="trophyCount">Research pending</small></article>
+    <article class="progress-card"><div class="eyebrow">TRACKED CONTENT</div><div class="progress-value" id="contentPct">0%</div><div class="progress-track"><i id="contentBar"></i></div><small id="contentCount">0 / 0 indexed records</small></article>
+    <article class="progress-card"><div class="eyebrow">COLLECTION TRACKER</div><div class="progress-value" id="collectionPct">—</div><div class="progress-track"><i id="collectionBar"></i></div><small id="collectionCount">Research pending</small></article>
+  </div>
+  <div class="coverage-note" id="coverageNote"></div>
+  <div class="section-heading compact"><div><div class="eyebrow">EXPANSIONS & EXTRA CONTENT</div><h2>World chapters</h2></div></div>
+  <div id="dlcGrid" class="dlc-grid"></div>
+  <div class="section-heading compact"><div><div class="eyebrow">EXPLORE THE ARCHIVE</div><h2>Codex</h2></div></div>
+  <div class="nav-grid" id="navGrid">
+    <button data-view="areas"><span>⌖</span>Areas</button>
+    <button data-view="bestiary"><span>♜</span>Bestiary</button>
+    <button data-view="npcs"><span>♙</span>NPCs & quests</button>
+    <button data-view="collection"><span>◇</span>Collection</button>
+    <button data-view="trophies"><span>✧</span>Trophies</button>
+    <button data-view="builds"><span>⚒</span>Build planner</button>
+  </div>
+</section>
+
+<section class="workspace" id="workspace">
+  <div class="section-heading"><div><div class="eyebrow">SELECTED GAME DATABASE</div><h2 id="viewTitle">Areas</h2></div><span class="micro" id="recordCount">0 RECORDS</span></div>
+  <div class="tools-row" id="filterTools">
+    <input id="searchInput" type="search" placeholder="Search this game..." autocomplete="off">
+    <select id="dlcFilter" aria-label="Filter by expansion"><option value="all">Base + DLC</option></select>
+  </div>
+  <div class="filter-bottom" id="filterBottom">
+    <select id="categoryFilter" aria-label="Filter category"><option value="all">All types</option></select>
+    <label class="incomplete-label"><input type="checkbox" id="incompleteOnly"> Show incomplete only</label>
+  </div>
+  <div id="recordList" class="record-list"><div class="empty-state">Choose a section to explore the archive.</div></div>
+</section>
+
+<section class="utility-section" id="tools">
+  <div class="section-heading"><div><div class="eyebrow">YOUR PERSONAL ARCHIVE</div><h2>Tools & backup</h2></div></div>
+  <div class="utility-grid">
+    <button class="utility-card" id="exportBtn"><b>↥ Export backup</b><small>Save progress, notes and builds as JSON</small></button>
+    <label class="utility-card file-label"><b>↧ Import backup</b><small>Merge a previous backup without clearing other games<input id="importFile" type="file" accept="application/json"></small></label>
+    <button class="utility-card" id="notesBtn"><b>✎ Journey notes</b><small>Personal notes stored separately per game</small></button>
+    <button class="utility-card" id="resetBtn"><b>⟲ Reset selected game</b><small>Clear only this game's personal data</small></button>
+  </div>
+  <p class="footer-note">Offline-first shell · Personal progress saved on this device · Catalog records are shipped with the app.</p>
+</section>
+</main>
+<nav class="bottom-nav"><a href="#dashboard">⌂<small>Home</small></a><a href="#workspace">⌕<small>Codex</small></a><a href="#gameGrid">♜<small>Worlds</small></a><a href="#tools">⚙<small>Tools</small></a></nav>
+</div>
+
+<dialog id="detailDialog"><form method="dialog"><button class="close-btn" aria-label="Close">×</button></form><div id="dialogBody"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="catalog.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
